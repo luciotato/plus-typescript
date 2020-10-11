@@ -1387,6 +1387,8 @@ namespace Harness {
                     throw new Error(`The baseline file ${relativeFileName} has changed.${ts.ForegroundColorEscapeSequences.Grey}\n\n${patch}`);
                 }
                 else {
+                    //console.log(`length: ${expected.length} ${encodedActual.length}`);
+                    //console.log(`meld ${actualFileName.replace("/local/","/reference/")} ${actualFileName}`);
                     throw new Error(`The baseline file ${relativeFileName} has changed.`);
                 }
             }

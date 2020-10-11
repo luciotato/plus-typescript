@@ -2,14 +2,14 @@ class Cell {
 }
 
 class Ship {
-    isSunk: boolean;
+    isSunk/*: boolean*/;
 }
 
-class Board {
+class Board {/*+
     ships: Ship[];
     cells: Cell[];
-
-    private allShipsSunk() {
++*/
+    /*+private+*/ allShipsSunk() {
         return this.ships.every(function (val) { return val.isSunk; });
     }    
 }

@@ -1551,6 +1551,43 @@ namespace ts {
                 }
             }
 
+            /**
+             * /*: types on comments ugly hack
+             * removes / * * / IF those are in the same line and the first one is /*:
+             * @param text
+             */
+            function preProcessTSFileContents(fileName: string, text: string): string {
+
+                const plusMl=text.indexOf("/*"+"+");
+                const singleLine=text.indexOf("/*"+":");
+                if (plusMl===-1 && singleLine===-1) return text; //early exit - performance
+
+                const lines = text.split("\n");
+                let replaced = false;
+                for (let inx = 0; inx < lines.length; inx++) {
+                    const line = lines[inx];
+                    const start = line.indexOf("/*"+":");
+                    if (start >= 0) {
+                        const end = line.indexOf("*"+"/");
+                        if (end >= 0) {
+                            lines[inx] = line.replace(/(\/\*|\*\/)/g, ""); //remove /* */
+                            replaced = true;
+                        }
+                    }
+                    else {
+                        const mlStart = line.indexOf("/*"+"+");
+                        const mlEnd = line.indexOf("+"+"*/");
+                        if (mlStart >= 0 || mlEnd >= 0) {
+                            lines[inx] = line.replace(/(\/\*\+|\+\*\/)/g, ""); //remove /*+ and/or +*/
+                            replaced = true;
+                        }
+                    }
+                }
+                if (!replaced) return text;
+                console.log("REPLACED: ",fileName);
+                return lines.join("\n");
+            }
+
             function readFileWorker(fileName: string, _encoding?: string): string | undefined {
                 let buffer: Buffer;
                 try {
@@ -1559,6 +1596,7 @@ namespace ts {
                 catch (e) {
                     return undefined;
                 }
+                let result: string;
                 let len = buffer.length;
                 if (len >= 2 && buffer[0] === 0xFE && buffer[1] === 0xFF) {
                     // Big endian UTF-16 byte order mark detected. Since big endian is not supported by node.js,
@@ -1569,18 +1607,30 @@ namespace ts {
                         buffer[i] = buffer[i + 1];
                         buffer[i + 1] = temp;
                     }
-                    return buffer.toString("utf16le", 2);
+                    result = buffer.toString("utf16le", 2);
                 }
-                if (len >= 2 && buffer[0] === 0xFF && buffer[1] === 0xFE) {
+                else if (len >= 2 && buffer[0] === 0xFF && buffer[1] === 0xFE) {
                     // Little endian UTF-16 byte order mark detected
-                    return buffer.toString("utf16le", 2);
+                    result = buffer.toString("utf16le", 2);
                 }
-                if (len >= 3 && buffer[0] === 0xEF && buffer[1] === 0xBB && buffer[2] === 0xBF) {
+                else if (len >= 3 && buffer[0] === 0xEF && buffer[1] === 0xBB && buffer[2] === 0xBF) {
                     // UTF-8 byte order mark detected
-                    return buffer.toString("utf8", 3);
+                    result = buffer.toString("utf8", 3);
                 }
-                // Default is UTF-8 with no byte order mark
-                return buffer.toString("utf8");
+                else {
+                    // Default is UTF-8 with no byte order mark
+                    result = buffer.toString("utf8");
+                }
+
+                if (fileName && fileName.length>3 && fileName.slice(-3) === ".ts"
+                    // && fileName.indexOf("bom-utf16le.")===-1
+                 ) {
+                    return preProcessTSFileContents(fileName, result);
+                }
+                else {
+                    return result;
+                }
+
             }
 
             function readFile(fileName: string, _encoding?: string): string | undefined {

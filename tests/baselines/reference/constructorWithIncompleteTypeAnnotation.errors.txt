@@ -354,7 +354,7 @@ tests/cases/compiler/constructorWithIncompleteTypeAnnotation.ts(261,1): error TS
             public OPERATOR(): number {
                 var a: number[] = [1, 2, 3, 4, 5, ];/*[] bug*/ // YES []
                 var i = a[1];/*[]*/
-                i = i + i - i * i / i % i & i | i ^ i;/*+ - * / % & | ^*/
+                i = i + i - i * i / i % i & i | i ^ i;/* + - * / % & | ^*/
                 var b  =  true && false || true ^ false;/*& | ^*/
                                            ~~~~~~~~~~~~
 !!! error TS2447: The '^' operator is not allowed for boolean types. Consider using '!==' instead.
@@ -366,8 +366,8 @@ tests/cases/compiler/constructorWithIncompleteTypeAnnotation.ts(261,1): error TS
                 ~
 !!! error TS2322: Type 'boolean' is not assignable to type 'number'.
                 var f = true ? 1 : 0;/*? :*/   // YES :
-                i++;/*++*/
-                i--;/*--*/
+                i++;/* ++ */
+                i--;/* -- */
                 b = true && false || true;/*&& ||*/
                 ~
 !!! error TS2322: Type 'boolean' is not assignable to type 'number'.
@@ -377,7 +377,7 @@ tests/cases/compiler/constructorWithIncompleteTypeAnnotation.ts(261,1): error TS
                 b = i == j && i != j && i <= j && i >= j;/*= == && != <= >=*/
                 ~
 !!! error TS2322: Type 'boolean' is not assignable to type 'number'.
-                i += <number>5.0;/*+=*/
+                i += <number>5.0;/* += */
                 i -= i;/*-=*/
                 i *= i;/**=*/
                 if (i == 0)

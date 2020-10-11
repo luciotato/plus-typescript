@@ -176,20 +176,20 @@
 //        public OPERATOR(): number {
 //            var a: number[] = [1, 2, 3, 4,  implements , ];/*[] bug*/ // YES []
 //            var i = a[1];/*[]*/
-//            i = i + i - i * i / i % i & i | i ^ i;/*+ - * / % & | ^*/
+//            i = i + i - i * i / i % i & i | i ^ i;/* + - * / % & | ^ */
 //            var b = true && false || true ^ false;/*& | ^*/
 //            b = !b;/*!*/
 //            i = ~i;/*~i*/
 //            b = i < (i -  continue ) && (i + 1) > i;/*< && >*/
 //            var f = true ? 1 : 0;/*? :*/   // YES :
-//            i++;/*++*/
-//            i--;/*--*/
+//            i++;/* ++ */
+//            i--;/* -- */
 //            b = true && false || true;/*&& ||*/
 //            i = i << 5;/*<<*/
 //            i = i >> 5;/*>>*/
 //            var j = i;
 //            b = i == j && i != j && i <= j && i >= j;/*= == && != <= >=*/
-//            i += <number>5.0;/*+=*/
+//            i += <number>5.0;/* += */
 //            i -= i;/*-=*/
 //            i *= i;/**=*/
 //            if (i == 0)

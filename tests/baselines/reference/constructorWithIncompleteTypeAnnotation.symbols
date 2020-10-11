@@ -411,7 +411,7 @@ module TypeScriptAllInOne {
 >i : Symbol(i, Decl(constructorWithIncompleteTypeAnnotation.ts, 177, 15))
 >a : Symbol(a, Decl(constructorWithIncompleteTypeAnnotation.ts, 176, 15))
 
-            i = i + i - i * i / i % i & i | i ^ i;/*+ - * / % & | ^*/
+            i = i + i - i * i / i % i & i | i ^ i;/* + - * / % & | ^*/
 >i : Symbol(i, Decl(constructorWithIncompleteTypeAnnotation.ts, 177, 15))
 >i : Symbol(i, Decl(constructorWithIncompleteTypeAnnotation.ts, 177, 15))
 >i : Symbol(i, Decl(constructorWithIncompleteTypeAnnotation.ts, 177, 15))
@@ -444,10 +444,10 @@ module TypeScriptAllInOne {
             var f = true ? 1 : 0;/*? :*/   // YES :
 >f : Symbol(f, Decl(constructorWithIncompleteTypeAnnotation.ts, 183, 15))
 
-            i++;/*++*/
+            i++;/* ++ */
 >i : Symbol(i, Decl(constructorWithIncompleteTypeAnnotation.ts, 177, 15))
 
-            i--;/*--*/
+            i--;/* -- */
 >i : Symbol(i, Decl(constructorWithIncompleteTypeAnnotation.ts, 177, 15))
 
             b = true && false || true;/*&& ||*/
@@ -476,7 +476,7 @@ module TypeScriptAllInOne {
 >i : Symbol(i, Decl(constructorWithIncompleteTypeAnnotation.ts, 177, 15))
 >j : Symbol(j, Decl(constructorWithIncompleteTypeAnnotation.ts, 189, 15))
 
-            i += <number>5.0;/*+=*/
+            i += <number>5.0;/* += */
 >i : Symbol(i, Decl(constructorWithIncompleteTypeAnnotation.ts, 177, 15))
 
             i -= i;/*-=*/
