@@ -34,14 +34,16 @@ export function
 
 ## How it works
 
-The 30-line hack inside TypeScript infraestructure services makes the following sequences invisible to tsc:
+The 30-line hack inside TypeScript infrastructure services makes the following sequences invisible to tsc:
 
 * `/*:` and `*/` when used on the same line, so you can write `title/*:string*/` and tsc will see: `title:string`
 
 * `/*+` and `+*/` `slash-asterisk-plus` and `plus-asterisk-slash`, are invisble to tsc
 
 
-### slash-asterisk-plus examples
+### Slash-asterisk-plus examples
+
+> You need to enclose type declarations with slash-asterisk-plus
 
 ```typescript
 //util/CommandLineArgs.ts
