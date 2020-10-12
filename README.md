@@ -2,7 +2,7 @@ plus-typescript readme
 
 # plus-typescript
 
-This is a fork of [TypeScript](https://www.typescriptlang.org/), including a 30 line hack to allow type annotations ***using comments*** in the code.
+This is a fork of [TypeScript](https://www.typescriptlang.org/), including a 30 line hack to allow  type annotations ***using comments*** in the code.
 
 If you enclose all ts-specific code inside comments, the .ts source file becomes ***directly*** executable by node and the browser without the need of a transpilation phase.
 
@@ -66,8 +66,13 @@ function view(command/*:string*/, fnJSONparams/*+?:any+*/)/*:string*/ {...
 <small>*Here the annotation `?:any` is processed by typescript but ignored by node and the browser*</small>
 
 ## Usage
+
+`npm install --save-dev plus-typescript`
+`npm remove typescript`
+
 * Keep the .ts extension on the source files
 * add `"plus-typescript"` instead of `"typescript"` in your package.json's `"devDependencies:{"` 
+* move all ts type-annotations inside comments `/*:` or `/*+`
 * use the .ts files directly with node or in the browser 
 
 See the example project for a complete package.json example
@@ -83,8 +88,17 @@ You keep the .ts extension for the source files. The browser has no problem impo
 ## Status
 This is beta and barely tested. Mantainers and contributors are welcomed.
 
+## Contibuting
+The modifications are in the `plus` branch, and that's the brach that's published in npm as `plus-typescript`. 
 
----------------
+The `master` branch will be kept up-to-date from the official TypeScript repository.
+
+We're keeping the same version number as TypeScript
+
+Besides the hack, `plus-typescript` is completely API-compatible with TypeScript.
+
+
+--------------
 
 
 # TypeScript
