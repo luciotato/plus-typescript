@@ -2,7 +2,7 @@
 
 This is a fork of [TypeScript](https://www.typescriptlang.org/), including a 30 line hack to allow  type annotations ***using comments*** in the code.
 
-If you enclose all ts-specific code inside comments, the .ts source file becomes ***directly*** executable by node and the browser without the need of a transpilation phase.
+If you enclose all ts-specific code inside comments, the .ts source file becomes ***directly*** executable by node and the browser without the need of a transpilation step.
 
 Then, you can directly edit sources on Chrome Developer Tools with hot-reload and instant feedback. Chrome Developer Tools also allows you to map a local folder so you can save your changes using Chrome Developer Tools as a fast-and-dirty IDE.
 
