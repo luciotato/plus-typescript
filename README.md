@@ -1,5 +1,3 @@
-plus-typescript readme
-
 # plus-typescript
 
 This is a fork of [TypeScript](https://www.typescriptlang.org/), including a 30 line hack to allow  type annotations ***using comments*** in the code.
