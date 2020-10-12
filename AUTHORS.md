@@ -268,6 +268,7 @@ TypeScript is authored by:
  - Limon Monte
  - Lorant Pinter
  - Lucien Greathouse
+ - Lucio Tato (plus-typescript mantainer)
  - Luka Hartwig
  - Lukas Elmer
  - M.Yoshimura

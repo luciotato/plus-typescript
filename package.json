@@ -1,10 +1,10 @@
 {
-    "name": "typescript",
-    "author": "Microsoft Corp.",
-    "homepage": "https://www.typescriptlang.org/",
+    "name": "plus-typescript",
+    "author": "Lucio Tato",
+    "homepage": "https://github.com/luciotato/plus-typescript/",
     "version": "4.1.0",
     "license": "Apache-2.0",
-    "description": "TypeScript is a language for application scale JavaScript development",
+    "description": "TypeScript hack to add types in comments so .ts files can be run directly by node or the browser. e.g.: function a(name /*:string:*) /*:void*/ ",
     "keywords": [
         "TypeScript",
         "Microsoft",
@@ -13,11 +13,11 @@
         "javascript"
     ],
     "bugs": {
-        "url": "https://github.com/Microsoft/TypeScript/issues"
+        "url": "https://github.com/luciotato/plus-typescript/issues"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Microsoft/TypeScript.git"
+        "url": "https://github.com/luciotato/plus-typescript.git"
     },
     "main": "./lib/typescript.js",
     "typings": "./lib/typescript.d.ts",

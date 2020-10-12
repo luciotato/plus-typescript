@@ -1565,26 +1565,29 @@ namespace ts {
                 const lines = text.split("\n");
                 let replaced = false;
                 for (let inx = 0; inx < lines.length; inx++) {
-                    const line = lines[inx];
+
+                    let line = lines[inx];
+
+                    const mlStart = line.indexOf("/*"+"+");
+                    const mlEnd = line.indexOf("+"+"*/");
+                    if (mlStart >= 0 || mlEnd >= 0) {
+                        line = line.replace(/(\/\*\+|\+\*\/)/g, ""); //remove /*+ and/or +*/
+                        replaced = true;
+                    }
+
                     const start = line.indexOf("/*"+":");
                     if (start >= 0) {
                         const end = line.indexOf("*"+"/");
                         if (end >= 0) {
-                            lines[inx] = line.replace(/(\/\*|\*\/)/g, ""); //remove /* */
+                            line = line.replace(/(\/\*|\*\/)/g, ""); //remove /* */
                             replaced = true;
                         }
                     }
-                    else {
-                        const mlStart = line.indexOf("/*"+"+");
-                        const mlEnd = line.indexOf("+"+"*/");
-                        if (mlStart >= 0 || mlEnd >= 0) {
-                            lines[inx] = line.replace(/(\/\*\+|\+\*\/)/g, ""); //remove /*+ and/or +*/
-                            replaced = true;
-                        }
-                    }
+                    if (replaced) lines[inx]=line;
                 }
                 if (!replaced) return text;
-                console.log("REPLACED: ",fileName);
+                if (fileName===undefined){throw new Error("fileName is undefined");};
+                //console.log("REPLACED: ",fileName);
                 return lines.join("\n");
             }
 
