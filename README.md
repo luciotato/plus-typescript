@@ -99,6 +99,9 @@ We're keeping the same version number as TypeScript
 
 Besides the hack, `plus-typescript` is completely API-compatible with TypeScript.
 
+## TO-DO
+
+[ ] Make this hack work with VSCode and the ts-LanguageServices. ["typescript.tsdk": "./node_modules/plus-typescript/lib"](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-newer-typescript-versions)
 
 --------------
 
