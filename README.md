@@ -61,12 +61,14 @@ export type OptionDeclaration =
 ```typescript
 function view(command/*:string*/, fnJSONparams/*+?:any+*/)/*:string*/ {...
 ```
-<small>*Here the annotation `?:any` is processed by typescript but ignored by node and the browser*</small>
+> *Here the annotation `?:any` is processed by typescript but ignored by node and the browser*
 
 ## Usage
 
-`npm install --save-dev plus-typescript`
-`npm remove typescript`
+```
+npm install --save-dev plus-typescript
+npm remove typescript
+```
 
 * Keep the .ts extension on the source files
 * add `"plus-typescript"` instead of `"typescript"` in your package.json's `"devDependencies:{"` 
@@ -89,7 +91,7 @@ This is beta and barely tested. Mantainers and contributors are welcomed.
 ## Contibuting
 The modifications are in the `plus` branch, and that's the brach that's published in npm as `plus-typescript`. 
 
-The `master` branch will be kept up-to-date from the official TypeScript repository.
+The `master` branch will be kept up-to-date with the official TypeScript repository.
 
 We're keeping the same version number as TypeScript
 
