@@ -6415,7 +6415,7 @@ namespace ts {
         const ext = fileName.substr(fileName.lastIndexOf("."));
         switch (ext.toLowerCase()) {
             case Extension.Js:
-                return ScriptKind.JS;
+                return ScriptKind.TS;
             case Extension.Jsx:
                 return ScriptKind.JSX;
             case Extension.Ts:

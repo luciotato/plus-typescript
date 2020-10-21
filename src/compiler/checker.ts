@@ -3233,7 +3233,10 @@ namespace ts {
             }
             const currentSourceFile = getSourceFileOfNode(location);
             const resolvedModule = getResolvedModule(currentSourceFile, moduleReference)!; // TODO: GH#18217
-            const resolutionDiagnostic = resolvedModule && getResolutionDiagnostic(compilerOptions, resolvedModule);
+            let resolutionDiagnostic = resolvedModule && getResolutionDiagnostic(compilerOptions, resolvedModule);
+
+            if (moduleReference.endsWith(".js")) resolutionDiagnostic=undefined; //PLUS-TS
+
             const sourceFile = resolvedModule && !resolutionDiagnostic && host.getSourceFile(resolvedModule.resolvedFileName);
             if (sourceFile) {
                 if (sourceFile.symbol) {

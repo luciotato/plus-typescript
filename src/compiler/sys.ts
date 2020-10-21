@@ -1625,7 +1625,9 @@ namespace ts {
                     result = buffer.toString("utf8");
                 }
 
-                if (fileName && fileName.length>3 && fileName.slice(-3) === ".ts"
+                if (fileName && fileName.length>3 && fileName.slice(-3) === ".js"
+                    // && fileName.slice(-5) !== ".d.ts"
+                    // && fileName.indexOf("/@types")===-1
                     // && fileName.indexOf("bom-utf16le.")===-1
                  ) {
                     return preProcessTSFileContents(fileName, result);

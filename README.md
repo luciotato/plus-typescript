@@ -1,16 +1,16 @@
 # plus-typescript
 
-This is a fork of [TypeScript](https://www.typescriptlang.org/), including a 30 line hack to allow  type annotations ***using comments*** in the code.
+This is a fork of [TypeScript](https://www.typescriptlang.org/), including a 30 line hack to allow type annotations ***using comments*** in the code.
 
-If you enclose all ts-specific code inside comments, the .ts source file becomes ***directly*** executable by node and the browser without the need of a transpilation step.
+If you enclose all ts-specific code inside comments, a .js file is typed AND still executable by node/browser without the need of a transpilation step.
 
 Then, you can directly edit sources on Chrome Developer Tools with hot-reload and instant feedback. Chrome Developer Tools also allows you to map a local folder so you can save your changes using Chrome Developer Tools as a fast-and-dirty IDE.
 
-We wanted all of this without losing the amazing productivity TypeScript brings in, so this hack was born to allow us to ***run the sources, avoid the transpilation step but keep using TypeScript***.
+We wanted all of this without losing the amazing productivity TypeScript brings in, so this hack was born to allow us to ***type-checked .js files as if they where .ts files, with all TS-specific code & annotations included in special comments***.
 
 ## Examples
 
-TypeScript: type-checked, needs transpiling step
+example.ts: TypeScript: type-checked, needs transpiling step
 ```typescript
 export function 
   ShowHelp(title:string, options:Record<string,OptDecl>):void{
@@ -21,7 +21,7 @@ export function
 }
 ```
 
-plus-typescript, type-checked, can be run by node or the browser
+example.js, plus-typescript, type-checked but runs in node/browser
 ```typescript
 export function 
   ShowHelp(title/*:string*/, options/*:Record<string,OptDecl>*/) /*:void*/ {
@@ -40,13 +40,14 @@ The 30-line hack inside TypeScript infrastructure services makes the following s
 
 * `/*+` and `+*/` `slash-asterisk-plus` and `plus-asterisk-slash`, are invisble to tsc
 
+* also: .js files are processed as if they were .ts files
 
 ### Slash-asterisk-plus examples
 
 > You need to enclose type declarations with slash-asterisk-plus
 
 ```typescript
-//util/CommandLineArgs.ts
+//util/CommandLineArgs.js
 /*+
 export type OptionDeclaration =
     {
@@ -57,9 +58,10 @@ export type OptionDeclaration =
     }
 +*/
 
-//main.ts
-/*+import { OptionDeclaration } from "./util/CommandLineArgs"+*/
+//main.js
+/*+import type { OptionDeclaration } from "./util/CommandLineArgs"+*/
 ```
+
 ```typescript
 function view(command/*:string*/, fnJSONparams/*+?:any+*/)/*:string*/ {...
 ```
@@ -72,10 +74,18 @@ npm install --save-dev plus-typescript
 npm remove typescript
 ```
 
-* Keep the .ts extension on the source files
+set the following as build script:
+```
+//package.json
+  "scripts": {
+    "build": "node build.js",
+  }
+```
+
+* Keep all files in /src with a .js extension
 * add `"plus-typescript"` instead of `"typescript"` in your package.json's `"devDependencies:{"` 
 * move all ts type-annotations inside comments `/*:` or `/*+`
-* use the .ts files directly with node or in the browser 
+* use the .js files directly with node or in the browser 
 
 See the example project for a complete package.json example
 
@@ -83,19 +93,15 @@ See the example project for a complete package.json example
 
 **plus-ts-test** is a project example using `plus-typescript` and node v14 to make a CLI tool, you can see the project here: [github.com/luciotato/plus-ts-test](github.com/luciotato/plus-ts-test)
 
-### Running .ts files directly with node
-
-You keep the .ts extension for the source files. The browser has no problem importing a script ending in .ts, but node will complain. If you're writing a console app in node, you'll have to use a loader-hook to convince node to accept .ts files as .js type:"module" files. All this is solved in the example project above.
-
 ## Status
-This is beta and barely tested. Mantainers and contributors are welcomed.
+This is beta. Mantainers and contributors are welcomed.
 
 ## Contibuting
 The modifications are in the `plus` branch, and that's the brach that's published in npm as `plus-typescript`. 
 
 The `master` branch will be kept up-to-date with the official TypeScript repository.
 
-We're keeping the same version number as TypeScript
+We're keeping similar version numbers as TypeScript
 
 Besides the hack, `plus-typescript` is completely API-compatible with TypeScript.
 

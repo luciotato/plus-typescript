@@ -39,7 +39,17 @@
             "label": "gulp: services",
             "problemMatcher": [
                 "$tsc"
+            ]
+        },
+        {
+            "type": "npm",
+            "script": "build:plus",
+            "problemMatcher": [
+                "$tsc"
             ],
+            "group": "build",
+            "label": "npm: build:plus",
+            "detail": "npm run build:compiler && bash plus-prepare-npm-publish.sh"
         }
     ]
 }

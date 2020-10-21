@@ -2283,7 +2283,8 @@ namespace ts {
 
             if (hasExtension(fileName)) {
                 const canonicalFileName = host.getCanonicalFileName(fileName);
-                if (!options.allowNonTsExtensions && !forEach(supportedExtensionsWithJsonIfResolveJsonModule, extension => fileExtensionIs(canonicalFileName, extension))) {
+                //PLUS-TS allow TS to process .js files as if they were .TS files
+                if (!fileName.endsWith(".js") && !options.allowNonTsExtensions && !forEach(supportedExtensionsWithJsonIfResolveJsonModule, extension => fileExtensionIs(canonicalFileName, extension))) {
                     if (fail) {
                         if (hasJSFileExtension(canonicalFileName)) {
                             fail(Diagnostics.File_0_is_a_JavaScript_file_Did_you_mean_to_enable_the_allowJs_option, fileName);
@@ -2294,6 +2295,7 @@ namespace ts {
                     }
                     return undefined;
                 }
+
 
                 const sourceFile = getSourceFile(fileName);
                 if (fail) {
