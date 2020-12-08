@@ -91,7 +91,7 @@ See the example project for a complete package.json example
 
 ## Example project
 
-**plus-ts-test** is a project example using `plus-typescript` and node v14 to make a CLI tool, you can see the project here: [github.com/luciotato/plus-ts-test](github.com/luciotato/plus-ts-test)
+**plus-ts-test** is a project example using `plus-typescript` and node v14 to make a CLI tool, you can see the project here: [github.com/luciotato/plus-ts-test](https://github.com/luciotato/plus-ts-test)
 
 ## Status
 This is beta. Mantainers and contributors are welcomed.
